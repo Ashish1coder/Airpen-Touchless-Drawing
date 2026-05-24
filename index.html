@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airpen Premium Workspace</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <main class="app-container">
+        <video id="input_video" autoplay playsinline muted></video>
+        <canvas id="output_canvas"></canvas>
+
+        <section class="topbar" aria-label="Airpen controls">
+            <div class="brand">
+                <span class="brand-mark"></span>
+                <div>
+                    <h1>Airpen</h1>
+                    <p>AI Touchless Pad using Hand Gestures</p>
+                </div>
+            </div>
+
+            <div id="premium-hud-status" class="hud-status layer-hover">STANDBY MODE</div>
+
+            <div class="action-row">
+                <button id="undoBtn" class="icon-button" type="button" title="Undo last stroke" aria-label="Undo last stroke">↶</button>
+                <button id="redoBtn" class="icon-button" type="button" title="Redo stroke" aria-label="Redo stroke">↷</button>
+                <button id="saveBtn" class="icon-button" type="button" title="Save drawing" aria-label="Save drawing">⇩</button>
+                <button id="clearBtn" class="icon-button danger" type="button" title="Clear canvas" aria-label="Clear canvas">×</button>
+            </div>
+        </section>
+
+        <aside class="tool-panel" aria-label="Drawing tools">
+            <div class="panel-group">
+                <span class="panel-label">Tool</span>
+                <div class="segmented-control" role="group" aria-label="Select drawing tool">
+                    <button id="penToolBtn" class="segment active" type="button">Pen</button>
+                    <button id="eraserToolBtn" class="segment" type="button">Eraser</button>
+                </div>
+            </div>
+
+            <div class="panel-group">
+                <label class="panel-label" for="brushSize">Brush size</label>
+                <div class="range-row">
+                    <input id="brushSize" type="range" min="2" max="22" value="6">
+                    <span id="brushSizeValue">6</span>
+                </div>
+            </div>
+
+            <div class="panel-group">
+                <span class="panel-label">Colors</span>
+                <div id="colorSwatches" class="swatch-grid" aria-label="Color palette"></div>
+            </div>
+        </aside>
+
+        <section class="gesture-guide" aria-label="Gesture guide">
+            <div><strong>Draw</strong><span>Index finger</span></div>
+            <div><strong>Move</strong><span>Open palm</span></div>
+            <div><strong>Eraser</strong><span>Left hand joints</span></div>
+            <div><strong>Size</strong><span>Pinch left/right</span></div>
+        </section>
+
+        <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
